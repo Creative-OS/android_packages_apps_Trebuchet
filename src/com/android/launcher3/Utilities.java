@@ -161,6 +161,7 @@ public final class Utilities {
     public static final String LENS_URI = "google://lens";
     public static final String SHOW_HOTSEAT_BG = "show_hotseat_bg";
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String KEY_DOCK_THEME = "pref_dock_theme";
     public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
 
     /**
@@ -986,5 +987,10 @@ public final class Utilities {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getInt(KEY_BLUR_DEPTH,
                 (int) context.getResources().getDimension(R.dimen.max_depth_blur_radius));
+    }
+    
+    public static boolean isThemedIconsEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_DOCK_THEME, false);
     }
 }
