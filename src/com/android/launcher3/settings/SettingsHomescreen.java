@@ -107,6 +107,7 @@ public class SettingsHomescreen extends FragmentActivity
             case Utilities.SHOW_HOTSEAT_BG:
             case Utilities.KEY_DOCK_THEME:
             case Utilities.KEY_SEARCH_RADIUS:
+            case Utilities.KEY_STATUS_BAR:
                 LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                 break;
             default:
