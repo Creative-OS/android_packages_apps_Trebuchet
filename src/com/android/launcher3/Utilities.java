@@ -169,6 +169,7 @@ public final class Utilities {
     public static final String KEY_EXTENDED_QUICKSPACE = "pref_extended_quickspace";
     public static final String KEY_QUICK_EVENTS_MSGS = "pref_show_qs_messages";
     public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
+    public static final String KEY_VIBRATION_TOGGLE = "pref_recents_vibration";
 
     /**
      * Returns true if theme is dark.
@@ -1034,4 +1035,9 @@ public final class Utilities {
         return prefs.getInt(KEY_BLUR_DEPTH,
                 (int) context.getResources().getDimension(R.dimen.max_depth_blur_radius));
     }
+
+    public static boolean recentsScrollVibration(Context context) {
+    	SharedPreferences prefs = getPrefs(context.getApplicationContext());
+    	return prefs.getBoolean(KEY_VIBRATION_TOGGLE, true);
+   }
 }
