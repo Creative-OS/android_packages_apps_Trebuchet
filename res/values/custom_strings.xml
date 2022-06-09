@@ -75,7 +75,10 @@
 
     <!-- Recents -->
     <string name="action_lens">Lens</string>
-    
+
+    <!-- Recents Scroll Vibration -->
+    <string name="pref_recents_vibration_title">Enable haptic feedback on recents scroll</string>
+
     <!-- Recents icons -->
     <string name="actions_category_title">Quick actions</string>
     <string name="recents_kill_app">Kill app</string>
