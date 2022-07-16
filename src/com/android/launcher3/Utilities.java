@@ -168,6 +168,7 @@ public final class Utilities {
     public static final String DESKTOP_SHOW_QUICKSPACE = "pref_show_quickspace";
     public static final String KEY_EXTENDED_QUICKSPACE = "pref_extended_quickspace";
     public static final String KEY_QUICK_EVENTS_MSGS = "pref_show_qs_messages";
+    public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
 
     /**
      * Returns true if theme is dark.
@@ -1026,5 +1027,11 @@ public final class Utilities {
     public static boolean isExtendedQuickSpace(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_EXTENDED_QUICKSPACE, true);
+    }
+
+    public static int getBlurRadius(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(KEY_BLUR_DEPTH,
+                (int) context.getResources().getDimension(R.dimen.max_depth_blur_radius));
     }
 }
