@@ -157,6 +157,7 @@ public final class Utilities {
 
     public static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
 
     /**
      * Returns true if theme is dark.
@@ -970,5 +971,11 @@ public final class Utilities {
     private static boolean isQSBEnabled(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_DOCK_SEARCH, true);
+    }
+
+    public static int getBlurRadius(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(KEY_BLUR_DEPTH,
+                (int) context.getResources().getDimension(R.dimen.max_depth_blur_radius));
     }
 }
