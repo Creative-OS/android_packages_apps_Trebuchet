@@ -98,11 +98,7 @@ public class SettingsActivity extends FragmentActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (Utilities.DESKTOP_SHOW_QUICKSPACE.equals(key)) {
-                Utilities.restart(this);
-        }
-    }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
 
     private boolean startPreference(String fragment, Bundle args, String key) {
