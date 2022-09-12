@@ -52,6 +52,8 @@ import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.icu.text.DateFormat;
+import android.icu.text.DisplayContext;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.DeadObjectException;
@@ -63,6 +65,7 @@ import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.text.style.TtsSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -162,6 +165,7 @@ public final class Utilities {
     public static final String KEY_DOCK_THEME = "pref_dock_theme";
     public static final String KEY_SEARCH_RADIUS = "pref_search_radius_size";
     public static final String KEY_SHOW_HOTSEAT_BG = "pref_show_hotseat_bg";
+    public static final String DESKTOP_SHOW_QUICKSPACE = "pref_show_quickspace";
 
     /**
      * Returns true if theme is dark.
@@ -945,6 +949,21 @@ public final class Utilities {
         return options;
     }
 
+    public static String formatDateTime(Context context, long timeInMillis) {
+        try {
+            String format = "EEEE, MMM d";
+            String formattedDate;
+            DateFormat dateFormat = DateFormat.getInstanceForSkeleton(format, Locale.getDefault());
+            dateFormat.setContext(DisplayContext.CAPITALIZATION_FOR_STANDALONE);
+            formattedDate = dateFormat.format(timeInMillis);
+            return formattedDate;
+        } catch (Throwable t) {
+            Log.e(TAG, "Error formatting At A Glance date", t);
+            return DateUtils.formatDateTime(context, timeInMillis, DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_MONTH);
+        }
+
+    }
+
     public static boolean isWorkspaceEditAllowed(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return !prefs.getBoolean(InvariantDeviceProfile.KEY_WORKSPACE_LOCK, false);
@@ -990,5 +1009,10 @@ public final class Utilities {
     public static boolean isHotseatBgEnabled(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_SHOW_HOTSEAT_BG, false);
+    }
+
+    public static boolean showQuickspace(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(DESKTOP_SHOW_QUICKSPACE, true);
     }
 }
